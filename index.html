@@ -4,47 +4,57 @@
 		<meta charset="UTF-8">
 		<title>登录</title>
 		<link rel="shortcut icon" href="images/bdxx.png">
-		<link rel="stylesheet" href="./css/login.css">
-		<link rel="stylesheet" href="./css/footer.css">
+		<link rel="stylesheet" href="css/login.css">
+		<link rel="stylesheet" href="css/footer.css">
+		<script src="js/Bmob-2.4.14.min.js"></script>
 	</head>
 	<body>
 		<!--头部-->
+		<script>
+			Bmob.initialize("7aa8e2b65f63a7ac", "321789");
+			Bmob.debug(true);
+
+			function login() {
+				Bmob.User.login(document.getElementById("username").value, document.getElementById("pwd").value).then(res => {
+					location.href = "loginin.html";
+				}).catch(err => {
+					alert(err.error);
+				});
+			}
+		</script>
 		<div id="header">
 			<!--头部中间信息-->
 			<div class="h_center">
-				<img src="./images/bdxx.png" alt="">
+				<img src="images/bdxx.png" alt="">
 				<p>欢迎来到猫眼电影：请先登录！</p>
 			</div>
 		</div>
 
-
-		<!--中部-->
 		<div id="login_body">
 			<div class="login_b_center">
 				<div class="login_bg">
 					<h1>密码登录</h1>
-					<form action="#" id="login">
-						<!--                //用户名-->
-						<div class="userName">
-							<span></span><input type="text">
-						</div>
-						<!--                //密码-->
-						<div class="password">
-							<span></span><input type="password">
-						</div>
-						<!--                //登录按钮-->
-						<div class="login_btn">
-							<a href="index.html">
-								<input type="button" value="登录">
-							</a>
-						</div>
-						<div class="forgot_password">
-							<a href="./register.html">注册账号</a>
-						</div>
-					</form>
+					<!--                //用户名-->
+					<div class="userName">
+						<span> 用户名</span>
+						<input type="text" id="username">
+					</div>
+					<!--                //密码-->
+					<div class="password">
+						<span>密码</span>
+						<input type="password" id="pwd">
+					</div>
+					<!--                //登录按钮-->
+					<div class="login_btn">
+						<a href="loginin.html">
+							<input type="button" value="登录" onclick="login()">
+						</a>
+					</div>
+					<div class="forgot_password">
+						<a href="./register.html">注册账号</a>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!--尾部-->
 	</body>
 </html>

@@ -4,15 +4,34 @@
 		<meta charset="UTF-8">
 		<title>注册</title>
 
-		<link rel="stylesheet" href="./css/register.css">
-		<link rel="shortcut icon" href="./images/bdxx.jpg">
+		<link rel="stylesheet" href="css/register.css">
+		<link rel="shortcut icon" href="images/bdxx.png">
+		<script src="js/Bmob-2.4.14.min.js"></script>
 	</head>
 	<body>
+		<script>
+			Bmob.initialize("7aa8e2b65f63a7ac", "321789");
+			Bmob.debug(true);
+
+			function register() {
+				let params = {
+					username: document.getElementById("username").value,
+					password: document.getElementById("pwd").value,
+					email: document.getElementById("email").value,
+					phone: document.getElementById("telphone").value,
+				}
+				Bmob.User.register(params).then(res => {
+					location.href = "index.html";
+				}).catch(err => {
+					alert(err.error);
+				});
+			}
+		</script>
 		<!--头部-->
 		<div id="reg_header">
 			<div class="reg_h_center">
 				<div class="reg_h_left">
-					<img src="./images/bdxx.png" alt="">
+					<img src="images/bdxx.png" alt="">
 					<h3>欢迎注册</h3>
 				</div>
 			</div>
@@ -27,37 +46,38 @@
 			</div>
 			<div class="reg_center">
 				<div class="reg_form">
-					<form action="#" method="post">
-						<table>
-							<tr>
-								<td class="td_left"><label for="username">用户名</label></td>
-								<td class="td_right"><input type="text" name="username" placeholder="请输入用户名"
-										id="username"></td>
-							</tr>
-							<tr>
-								<td class="td_left"><label for="password">密码</label></td>
-								<td class="td_right"><input type="password" name="password" placeholder="请输入密码"
-										id="password"></td>
-							</tr>
-							<tr>
-								<td class="td_left"><label for="Email">Email</label></td>
-								<td class="td_right"><input type="email" name="email" placeholder="请输入Email" id="Email">
-								</td>
-							</tr>
-							<tr>
-								<td class="td_left"><label for="Telphone">手机号</label></td>
-								<td class="td_right"><input type="text" name="telphone" placeholder="请输入您的手机号"
-										id="Telphone"></td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center"><input type="submit" value="注册" id="btn_sub"></td>
-							</tr>
-						</table>
-					</form>
+					<table>
+						<tr>
+							<td class="td_left"><label for="username">用户名</label></td>
+							<td class="td_right"><input type="text" name="username" placeholder="请输入用户名" id="username">
+							</td>
+						</tr>
+						<tr>
+							<td class="td_left"><label for="password">密码</label></td>
+							<td class="td_right">
+								<input type="password" name="password" placeholder="请输入密码" id="pwd">
+							</td>
+						</tr>
+						<tr>
+							<td class="td_left"><label for="email">Email</label></td>
+							<td class="td_right"><input type="email" name="email" placeholder="请输入Email" id="email">
+							</td>
+						</tr>
+						<tr>
+							<td class="td_left"><label for="telphone">手机号</label></td>
+							<td class="td_right"><input type="text" name="telphone" placeholder="请输入您的手机号"
+									id="telphone"></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<input type="button" value="注 册" onclick="register()">
+							</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div class="reg_right">
-				<p>已有账号?<a href="./login.html">立即登录</a></p>
+				<p>已有账号?<a href="index.html">立即登录</a></p>
 			</div>
 		</div>
 	</body>
